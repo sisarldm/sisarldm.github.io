@@ -4,42 +4,58 @@
 
 <h1>1.1. Actividad: Obtención de datos a través de URL</h1>
 <code>
-    mydata=[<br>
+    [<br>
     {<br>
-    "name"    : "peter parker",<br>
-    "age"     : 21,  <br>
-    "email"   : "peter@mit.edu",<br>
-    "courses" : [<br>
-    {"number" : "1.00", "name" : "engr comp"},<br>
-    {"number" : "7.00", "name" : "intro bio"}    <br>
-    ]<br>
+        "name"    : "peter parker",<br>
+        "age"     : 21,  <br>
+        "email"   : "peter@mit.edu",<br>
+        "courses" : [<br>
+            {"number" : "1.00", "name" : "engr comp"},<br>
+            {"number" : "7.00", "name" : "intro bio"}    <br>
+        ]<br>
     },<br>
     {<br>
-    "name"    : "bruce wayne",<br>
-    "age"     : 32,  <br>
-    "email"   : "bruce@mit.edu",<br>
-    "courses" : [<br>
-    {"number" : "2.00", "name" : "intro ME"},<br>
-    {"number" : "3.00", "name" : "intro MS"}    <br>
-    ]<br>
+        "name"    : "bruce wayne",<br>
+        "age"     : 32,  <br>
+        "email"   : "bruce@mit.edu",<br>
+        "courses" : [<br>
+            {"number" : "2.00", "name" : "intro ME"},<br>
+            {"number" : "3.00", "name" : "intro MS"}    <br>
+        ]<br>
     },<br>
     {<br>
-    "name"    : "diana prince",<br>
-    "age"     : 25,  <br>
-    "email"   : "diana@mit.edu",<br>
-    "courses" : [<br>
-    {"number" : "4.00", "name" : "intro arch"},<br>
-    {"number" : "5.00", "name" : "intro chem"}    <br>
-    ]<br>
+        "name"    : "diana prince",<br>
+        "age"     : 25,  <br>
+        "email"   : "diana@mit.edu",<br>
+        "courses" : [<br>
+            {"number" : "4.00", "name" : "intro arch"},<br>
+            {"number" : "5.00", "name" : "intro chem"}    <br>
+        ]<br>
     }<br>
-    ]<br>
-    (3) [{…}, {…}, {…}]<br>
-    console.log(mydata[0])<br>
-    VM566:1 {name: "peter parker", age: 21, email: "peter@mit.edu", courses: Array(2)}<br>
-    undefined<br>
-    console.log(mydata[0].email)<br>
-    VM586:1 peter@mit.edu<br>
-    undefined<br>
+]<br>
+(3) [{…}, {…}, {…}]<br>
+console.log(mydata[0])<br>
+VM566:1 {name: "peter parker", age: 21, email: "peter@mit.edu", courses: Array(2)}<br>
+undefined<br>
+console.log(mydata[0].email)<br>
+VM586:1 peter@mit.edu<br>
+undefined<br>
+</code>
+<p>--------------------------------------------------------------------------------------</p>
+<h2>1.1. Actividad: Obtención de datos a través de URL</h2>
+<code>
+var fetch = require('node-fetch');<br>
+<br>
+async function fetchAsync () {<br>
+    let response = await fetch('https://pollysnips.s3.amazonaws.com/bostonEmployeeSalaries.json ');<br>
+    let data = await response.json();<br>
+    return data;<br>
+<br>
+fetchAsync()<br>
+		.then(data=> console.log(data.meta.view.columns[18].cachedContents.largest))<br>
+        .catch(reason=>console.log(reason.message));<br>
+<br>
+> 415709.53<br>
 </code>
 
 </body>
